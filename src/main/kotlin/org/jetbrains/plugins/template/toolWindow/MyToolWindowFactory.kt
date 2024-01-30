@@ -8,6 +8,7 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.content.ContentFactory
+import com.intellij.ui.jcef.JBCefApp
 import org.jetbrains.plugins.template.MyBundle
 import org.jetbrains.plugins.template.services.MyProjectService
 import javax.swing.JButton
@@ -32,14 +33,15 @@ class MyToolWindowFactory : ToolWindowFactory {
         private val service = toolWindow.project.service<MyProjectService>()
 
         fun getContent() = JBPanel<JBPanel<*>>().apply {
-            val label = JBLabel(MyBundle.message("randomLabel", "?"))
+//            val label = JBLabel(MyBundle.message("randomLabel", "?"))
 
-            add(label)
-            add(JButton(MyBundle.message("shuffle")).apply {
-                addActionListener {
-                    label.text = MyBundle.message("randomLabel", service.getRandomNumber())
-                }
-            })
+            add(JBLabel("jcef supported ${JBCefApp.isSupported()}"))
+//            add(label)
+//            add(JButton(MyBundle.message("shuffle")).apply {
+//                addActionListener {
+//                    label.text = MyBundle.message("randomLabel", service.getRandomNumber())
+//                }
+//            })
         }
     }
 }
